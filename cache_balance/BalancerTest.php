@@ -51,4 +51,21 @@ class BalancerTest extends PHPUnit_Framework_TestCase {
         $server = $balancer->getServerBy('10255');
         $this->assertEquals($servers[1], $server);
     }
+
+    public function testRemoveSerever()
+    {
+        $balancer = new FileBalancer(3);
+        $servers = array(1 => 'aaa', 2 => 'bbb', 3 => 'ccc');
+        $balancer->addServer($servers[1]);
+        $balancer->addServer($servers[2]);
+        $balancer->addServer($servers[3]);
+
+        $server = $balancer->getServerBy('550');
+        $this->assertEquals($servers[2], $server);
+
+        $balancer->removeServer(2);
+
+        $server = $balancer->getServerBy('550');
+        $this->assertEquals($servers[3], $server);
+    }
 }
