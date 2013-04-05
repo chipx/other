@@ -10,16 +10,16 @@ include_once "balancer.php";
 class BalancerTest extends PHPUnit_Framework_TestCase {
     public function testCreate()
     {
-        $balancer = new Balancer();
+        $balancer = new FileBalancer();
         $this->assertEquals(2, $balancer->getPartLength());
 
-        $balancer = new Balancer(4);
+        $balancer = new FileBalancer(4);
         $this->assertEquals(4, $balancer->getPartLength());
     }
 
     public function testAddServer()
     {
-        $balancer = new Balancer(5);
+        $balancer = new FileBalancer(5);
         $balancer->addServer(dirname(__FILE__));
         $balancer->addServer(dirname(__FILE__ . "/../"));
 
@@ -30,7 +30,7 @@ class BalancerTest extends PHPUnit_Framework_TestCase {
 
     public function testGetServerBy()
     {
-        $balancer = new Balancer(3);
+        $balancer = new FileBalancer(3);
         $servers = array(1 => 'aaa', 2 => 'bbb', 3 => 'ccc');
         $balancer->addServer($servers[1]);
         $balancer->addServer($servers[2]);
