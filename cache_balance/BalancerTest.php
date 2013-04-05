@@ -11,10 +11,10 @@ class BalancerTest extends PHPUnit_Framework_TestCase {
     public function testCreate()
     {
         $balancer = new Balancer();
-        $this->assertEquals(10, $balancer->getElementCount());
+        $this->assertEquals(2, $balancer->getPartLength());
 
-        $balancer = new Balancer(50);
-        $this->assertEquals(50, $balancer->getElementCount());
+        $balancer = new Balancer(4);
+        $this->assertEquals(4, $balancer->getPartLength());
     }
 
     public function testAddServer()
@@ -30,12 +30,25 @@ class BalancerTest extends PHPUnit_Framework_TestCase {
 
     public function testGetServerBy()
     {
-        $balancer = new Balancer(5);
-        $servers = array(1 => dirname(__FILE__), 2 => dirname(__FILE__ . "/../"));
-        $balancer->addServer(dirname(__FILE__));
-        $balancer->addServer(dirname(__FILE__ . "/../"));
+        $balancer = new Balancer(3);
+        $servers = array(1 => 'aaa', 2 => 'bbb', 3 => 'ccc');
+        $balancer->addServer($servers[1]);
+        $balancer->addServer($servers[2]);
+        $balancer->addServer($servers[3]);
 
-        $server = $balancer->getServerBy('123');
+        $server = $balancer->getServerBy('1');
+        $this->assertEquals($servers[1], $server);
+
+        $server = $balancer->getServerBy('45');
+        $this->assertEquals($servers[1], $server);
+
+        $server = $balancer->getServerBy('670');
+        $this->assertEquals($servers[3], $server);
+
+        $server = $balancer->getServerBy('999');
+        $this->assertEquals($servers[3], $server);
+
+        $server = $balancer->getServerBy('10255');
         $this->assertEquals($servers[1], $server);
     }
 }
