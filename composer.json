@@ -1,6 +1,5 @@
 {
-    "name" : "other",
-    "vendor" : "chipx",
+    "name" : "chipx/other",
     "description" : "Hello world",
     "version" : "1.0"
 }
