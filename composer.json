@@ -1,4 +1,5 @@
 {
     "name" : "My Other project",
-    "description" : "Hello world"
+    "description" : "Hello world",
+    "version" : "1.0"
 }
