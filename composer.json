@@ -1,5 +1,15 @@
 {
-    "name" : "chipx/other",
-    "description" : "Hello world",
-    "version" : "1.0"
+    "name": "chipx/other",
+    "description": "Hello world",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Виктор Мельников",
+            "email": "v.melnikov@dengionline.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    }
 }
